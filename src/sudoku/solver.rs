@@ -6,7 +6,7 @@ pub fn solver(sudoku: &mut Sudoku, idx: usize) -> bool {
     }
 
     let coord = sudoku.queue.get(idx).clone();
-    if sudoku.grid.get(coord).digit.get() > 0 {
+    if !sudoku.grid.get(coord).is_free() {
         return solver(sudoku, idx + 1);
     }
 

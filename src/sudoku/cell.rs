@@ -20,6 +20,10 @@ impl Cell {
     pub fn add_candidate(&mut self, candidate: u8) {
         self.candidates.add(Digit::new(candidate))
     }
+
+    pub fn is_free(&self) -> bool {
+        self.digit.get() == 0
+    }
 }
 
 impl fmt::Display for Cell {
