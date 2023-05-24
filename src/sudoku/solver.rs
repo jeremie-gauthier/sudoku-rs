@@ -11,16 +11,12 @@ pub fn solver(sudoku: &mut Sudoku, idx: usize) -> bool {
     }
 
     let candidates = &sudoku.grid.get(coord).candidates;
-
-    for candidate in candidates.data {
-        let value = candidate.get();
-        if value == 0 {
-            break;
-        }
-
+    candidates.into_iter().any(|candidate| {
         if !sudoku.candidate_checker.can_set(candidate, coord) {
-            continue;
+            return false;
         }
+
+        let value = candidate.get();
         sudoku.grid.get_mut(coord).digit.set(value);
         sudoku.candidate_checker.set(value, coord);
 
@@ -30,7 +26,6 @@ pub fn solver(sudoku: &mut Sudoku, idx: usize) -> bool {
 
         sudoku.grid.get_mut(coord).digit.set(0);
         sudoku.candidate_checker.unset(value, coord);
-    }
-
-    false
+        return false;
+    })
 }
