@@ -6,11 +6,11 @@ pub fn solver(sudoku: &mut Sudoku, idx: usize) -> bool {
     }
 
     let coord = sudoku.queue.get(idx).clone();
-    if !sudoku.grid.get(coord).is_free() {
+    if !sudoku.grid.get_cell_ref(coord).is_free() {
         return solver(sudoku, idx + 1);
     }
 
-    let candidates = sudoku.grid.get(coord).get_candidates_ref();
+    let candidates = sudoku.grid.get_cell_ref(coord).get_candidates_ref();
     candidates.into_iter().any(|candidate| {
         if !sudoku.candidate_checker.can_set(candidate, coord) {
             return false;

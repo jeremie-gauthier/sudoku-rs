@@ -19,11 +19,11 @@ impl Grid {
         Self(grid)
     }
 
-    pub fn get(&self, coord: Coord) -> &Cell {
+    pub fn get_cell_ref(&self, coord: Coord) -> &Cell {
         &self.0[coord.row][coord.col]
     }
 
-    pub fn get_mut(&mut self, coord: Coord) -> &mut Cell {
+    pub fn get_mut_ref(&mut self, coord: Coord) -> &mut Cell {
         &mut self.0[coord.row][coord.col]
     }
 
