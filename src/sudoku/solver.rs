@@ -16,16 +16,14 @@ pub fn solver(sudoku: &mut Sudoku, idx: usize) -> bool {
             return false;
         }
 
-        let value = candidate.get();
-        sudoku.grid.get_mut(coord).digit.set(value);
-        sudoku.candidate_checker.set(value, coord);
+        sudoku.set_digit_at(candidate, coord);
 
         if solver(sudoku, idx + 1) {
             return true;
         }
 
-        sudoku.grid.get_mut(coord).digit.set(0);
-        sudoku.candidate_checker.unset(value, coord);
+        sudoku.unset_digit_at(coord);
+
         return false;
     })
 }

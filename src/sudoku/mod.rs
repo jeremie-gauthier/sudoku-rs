@@ -13,7 +13,9 @@ use std::fmt;
 pub use checker::checker;
 pub use solver::solver;
 
-use self::{candidate_checker::CandidateChecker, grid::Grid, queue::Queue};
+use self::{
+    candidate_checker::CandidateChecker, coord::Coord, digit::Digit, grid::Grid, queue::Queue,
+};
 
 pub const GRID_SIZE: usize = 9;
 
@@ -34,6 +36,22 @@ impl Sudoku {
             queue,
             candidate_checker,
         }
+    }
+
+    #[inline]
+    pub fn set_digit_at(&mut self, digit: Digit, coord: Coord) {
+        let value = digit.get();
+        self.grid.get_mut_ref(coord).digit.set(value);
+        self.candidate_checker.set(value, coord);
+    }
+
+    #[inline]
+    pub fn unset_digit_at(&mut self, coord: Coord) {
+        let cell = self.grid.get_mut_ref(coord);
+        let value = cell.digit.get();
+
+        cell.digit.clear();
+        self.candidate_checker.unset(value, coord);
     }
 }
 

@@ -15,6 +15,10 @@ impl Digit {
     pub fn set(&mut self, value: u8) {
         self.0 = value;
     }
+
+    pub fn clear(&mut self) {
+        self.0 = 0;
+    }
 }
 
 impl fmt::Display for Digit {
