@@ -5,7 +5,7 @@ use std::fmt;
 pub struct Cell {
     pub digit: Digit,
     pub coord: Coord,
-    pub candidates: Candidates,
+    candidates: Candidates,
 }
 
 impl Cell {
@@ -15,6 +15,10 @@ impl Cell {
             coord: Coord::new(row_idx, col_idx),
             candidates: Candidates::new(),
         }
+    }
+
+    pub fn get_candidates_ref(&self) -> &Candidates {
+        &self.candidates
     }
 
     pub fn add_candidate(&mut self, candidate: u8) {
