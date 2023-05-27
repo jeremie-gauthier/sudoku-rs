@@ -1,7 +1,6 @@
 mod candidate;
 mod candidate_checker;
 mod cell;
-mod checker;
 mod coord;
 mod digit;
 mod grid;
@@ -10,7 +9,6 @@ mod solver;
 
 use std::fmt;
 
-pub use checker::checker;
 pub use solver::solver;
 
 use self::{
