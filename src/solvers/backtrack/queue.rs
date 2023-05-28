@@ -1,6 +1,5 @@
-use crate::common::{coord::Coord, digit::Digit, grid::Grid, GRID_SIZE};
-
 use super::{candidate::Candidates, candidate_checker::CandidateChecker};
+use crate::common::{coord::Coord, digit::Digit, grid::Grid, GRID_SIZE};
 
 #[derive(Debug)]
 struct Item {

@@ -1,5 +1,6 @@
 mod common;
 mod solvers;
+
 use solvers::backtrack::{solver, Sudoku};
 
 const HARD_GRID: [[u8; 9]; 9] = [
