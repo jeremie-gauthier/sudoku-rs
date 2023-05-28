@@ -1,11 +1,10 @@
-use super::{candidate::Candidates, coord::Coord, digit::Digit};
+use super::{coord::Coord, digit::Digit};
 use std::fmt;
 
 #[derive(Debug)]
 pub struct Cell {
     pub digit: Digit,
     pub coord: Coord,
-    candidates: Candidates,
 }
 
 impl Cell {
@@ -13,16 +12,7 @@ impl Cell {
         Self {
             digit: Digit::new(digit),
             coord: Coord::new(row_idx, col_idx),
-            candidates: Candidates::new(),
         }
-    }
-
-    pub fn get_candidates_ref(&self) -> &Candidates {
-        &self.candidates
-    }
-
-    pub fn add_candidate(&mut self, candidate: u8) {
-        self.candidates.add(Digit::new(candidate))
     }
 
     pub fn is_free(&self) -> bool {

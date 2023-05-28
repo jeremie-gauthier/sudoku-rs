@@ -5,12 +5,12 @@ pub fn solver(sudoku: &mut Sudoku, idx: usize) -> bool {
         return true;
     }
 
-    let coord = sudoku.queue.get(idx).clone();
+    let coord = sudoku.queue.get_coord(idx);
     if !sudoku.grid.get_cell_ref(coord).is_free() {
         return solver(sudoku, idx + 1);
     }
 
-    let candidates = sudoku.grid.get_cell_ref(coord).get_candidates_ref();
+    let candidates = sudoku.queue.get_candidates_ref(idx);
     candidates.into_iter().any(|candidate| {
         if !sudoku.candidate_checker.can_set(candidate, coord) {
             return false;

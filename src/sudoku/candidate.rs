@@ -4,7 +4,7 @@ use std::cmp::Ordering;
 #[derive(Debug, Clone, Copy)]
 pub struct Candidates {
     pub data: [Digit; GRID_SIZE],
-    length: usize,
+    pub length: usize,
 }
 
 impl Candidates {
