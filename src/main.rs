@@ -1,6 +1,6 @@
 mod common;
-mod sudoku;
-use sudoku::{solver, Sudoku};
+mod solvers;
+use solvers::backtrack::{solver, Sudoku};
 
 const HARD_GRID: [[u8; 9]; 9] = [
     [0, 0, 0, 8, 0, 1, 0, 0, 0],

@@ -3,13 +3,10 @@ mod candidate_checker;
 mod queue;
 mod solver;
 
-use std::fmt;
-
-pub use solver::solver;
-
-use crate::common::{coord::Coord, digit::Digit, grid::Grid, GRID_SIZE};
-
 use self::{candidate_checker::CandidateChecker, queue::Queue};
+use crate::common::{coord::Coord, digit::Digit, grid::Grid, GRID_SIZE};
+pub use solver::solver;
+use std::fmt;
 
 pub struct Sudoku {
     grid: Grid,
