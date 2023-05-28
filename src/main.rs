@@ -1,5 +1,6 @@
 mod common;
 mod solvers;
+mod storage;
 
 use solvers::get_solver_factory;
 

@@ -4,14 +4,20 @@ mod queue;
 
 use self::{candidate_checker::CandidateChecker, queue::Queue};
 use super::{Factory, SolvingAlgorithm};
-use crate::common::{coord::Coord, digit::Digit, grid::Grid};
+use crate::{
+    common::{coord::Coord, digit::Digit, grid::Grid},
+    storage::BitFieldAdapter,
+};
 use std::fmt;
 
 pub struct BacktrackFactory;
 impl Factory for BacktrackFactory {
     fn init(&self, grid: &Grid) -> Box<dyn SolvingAlgorithm> {
         let mut grid = grid.clone();
-        let candidate_checker = CandidateChecker::new(&grid);
+
+        let checker_storage = Box::new(BitFieldAdapter::new());
+        let candidate_checker = CandidateChecker::new(&grid, checker_storage);
+
         let queue = Queue::new(&mut grid, &candidate_checker);
 
         Box::new(Backtrack {
@@ -61,16 +67,14 @@ impl Backtrack {
     pub fn set_digit_at(&mut self, digit: Digit, coord: Coord) {
         let value = digit.get();
         self.grid.get_mut_ref(coord).digit.set(value);
-        self.candidate_checker.set(value, coord);
+        self.candidate_checker.set(digit, coord);
     }
 
     #[inline]
     pub fn unset_digit_at(&mut self, coord: Coord) {
         let cell = self.grid.get_mut_ref(coord);
-        let value = cell.digit.get();
-
+        self.candidate_checker.remove(cell.digit, coord);
         cell.digit.clear();
-        self.candidate_checker.unset(value, coord);
     }
 }
 

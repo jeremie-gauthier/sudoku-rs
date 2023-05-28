@@ -43,8 +43,9 @@ impl Queue {
 
                 let mut candidates = Candidates::new();
                 for n in 1..=GRID_SIZE {
-                    if candidate_checker.is_a_candidate(n as u8, cell.coord) {
-                        candidates.add(Digit::new(n as u8));
+                    let digit = Digit::new(n as u8);
+                    if candidate_checker.can_set(digit, cell.coord) {
+                        candidates.add(digit);
                     }
                 }
 
