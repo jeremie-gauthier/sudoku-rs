@@ -1,4 +1,4 @@
-use super::{digit::Digit, GRID_SIZE};
+use crate::common::{digit::Digit, GRID_SIZE};
 use std::cmp::Ordering;
 
 #[derive(Debug, Clone, Copy)]

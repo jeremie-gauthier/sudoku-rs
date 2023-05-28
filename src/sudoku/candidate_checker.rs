@@ -1,4 +1,4 @@
-use super::{cell::Cell, coord::Coord, digit::Digit, grid::Grid, GRID_SIZE};
+use crate::common::{cell::Cell, coord::Coord, digit::Digit, grid::Grid, GRID_SIZE};
 
 type BitField = u16;
 

@@ -1,5 +1,5 @@
+mod common;
 mod sudoku;
-
 use sudoku::{solver, Sudoku};
 
 const HARD_GRID: [[u8; 9]; 9] = [

@@ -1,7 +1,6 @@
-use super::{
-    candidate::Candidates, candidate_checker::CandidateChecker, coord::Coord, digit::Digit,
-    grid::Grid, GRID_SIZE,
-};
+use crate::common::{coord::Coord, digit::Digit, grid::Grid, GRID_SIZE};
+
+use super::{candidate::Candidates, candidate_checker::CandidateChecker};
 
 #[derive(Debug)]
 struct Item {

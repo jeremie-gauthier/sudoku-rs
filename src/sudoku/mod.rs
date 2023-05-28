@@ -1,9 +1,5 @@
 mod candidate;
 mod candidate_checker;
-mod cell;
-mod coord;
-mod digit;
-mod grid;
 mod queue;
 mod solver;
 
@@ -11,11 +7,9 @@ use std::fmt;
 
 pub use solver::solver;
 
-use self::{
-    candidate_checker::CandidateChecker, coord::Coord, digit::Digit, grid::Grid, queue::Queue,
-};
+use crate::common::{coord::Coord, digit::Digit, grid::Grid, GRID_SIZE};
 
-pub const GRID_SIZE: usize = 9;
+use self::{candidate_checker::CandidateChecker, queue::Queue};
 
 pub struct Sudoku {
     grid: Grid,
