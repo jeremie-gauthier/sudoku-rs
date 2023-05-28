@@ -1,7 +1,7 @@
 use super::{coord::Coord, digit::Digit};
 use std::fmt;
 
-#[derive(Debug)]
+#[derive(Debug, Clone, Copy)]
 pub struct Cell {
     pub digit: Digit,
     pub coord: Coord,

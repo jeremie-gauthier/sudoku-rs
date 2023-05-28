@@ -1,6 +1,7 @@
 use super::{cell::Cell, coord::Coord, GRID_SIZE};
 use std::fmt;
 
+#[derive(Debug, Clone)]
 pub struct Grid(Vec<Vec<Cell>>);
 
 impl Grid {
