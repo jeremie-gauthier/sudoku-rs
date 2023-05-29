@@ -5,21 +5,6 @@ use std::fmt;
 pub struct Grid(Vec<Vec<Cell>>);
 
 impl Grid {
-    pub fn new(data: [[u8; GRID_SIZE]; GRID_SIZE]) -> Self {
-        let grid = data
-            .iter()
-            .enumerate()
-            .map(|(row_idx, row)| {
-                row.iter()
-                    .enumerate()
-                    .map(|(col_idx, digit)| Cell::new(*digit, row_idx, col_idx))
-                    .collect::<Vec<Cell>>()
-            })
-            .collect::<Vec<Vec<Cell>>>();
-
-        Self(grid)
-    }
-
     pub fn get_cell_ref(&self, coord: Coord) -> &Cell {
         &self.0[coord.row][coord.col]
     }
@@ -38,6 +23,31 @@ impl Grid {
 
     pub fn get_cell_mut(&mut self, row_idx: usize, col_idx: usize) -> &mut Cell {
         &mut self.0[row_idx][col_idx]
+    }
+}
+
+impl From<String> for Grid {
+    fn from(input: String) -> Self {
+        let grid = input
+            .chars()
+            .collect::<Vec<char>>()
+            .chunks(GRID_SIZE)
+            .enumerate()
+            .map(|(row_idx, row)| {
+                row.iter()
+                    .enumerate()
+                    .map(|(col_idx, char_nb)| {
+                        let digit: u8 = match *char_nb {
+                            '.' => 0,
+                            _ => u8::from_str_radix(&char_nb.to_string(), 10).unwrap(),
+                        };
+                        Cell::new(digit, row_idx, col_idx)
+                    })
+                    .collect::<Vec<Cell>>()
+            })
+            .collect::<Vec<Vec<Cell>>>();
+
+        Self(grid)
     }
 }
 
