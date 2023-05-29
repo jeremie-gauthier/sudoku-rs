@@ -10,7 +10,7 @@ pub struct Candidates {
 impl Candidates {
     pub fn new() -> Self {
         Self {
-            data: [0; GRID_SIZE].map(|zero| Digit::new(zero)),
+            data: [0; GRID_SIZE].map(Digit::new),
             length: 0,
         }
     }

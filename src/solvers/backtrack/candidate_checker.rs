@@ -14,17 +14,17 @@ impl CandidateChecker {
         let mut cols: [BitField; GRID_SIZE] = [0; GRID_SIZE];
         let mut squares: [BitField; GRID_SIZE] = [0; GRID_SIZE];
 
-        for row in 0..GRID_SIZE {
-            rows[row] = parse_array(grid.get_row(row));
+        for (row_idx, row) in rows.iter_mut().enumerate() {
+            *row = parse_array(grid.get_row(row_idx));
 
-            for col in 0..GRID_SIZE {
-                let cell = grid.get_cell(row, col);
+            for (col_idx, col) in cols.iter_mut().enumerate() {
+                let cell = grid.get_cell(row_idx, col_idx);
                 let cell_value = cell.digit.get();
                 if cell_value == 0 {
                     continue;
                 }
 
-                cols[col] = set_bit(cols[col], cell_value);
+                *col = set_bit(*col, cell_value);
                 squares[cell.coord.square] = set_bit(squares[cell.coord.square], cell_value);
             }
         }

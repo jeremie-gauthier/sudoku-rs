@@ -53,7 +53,7 @@ impl Backtrack {
 
             self.unset_digit_at(coord);
 
-            return false;
+            false
         })
     }
 
@@ -86,6 +86,6 @@ impl SolvingAlgorithm for Backtrack {
 
 impl fmt::Display for Backtrack {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        write!(f, "{}\n", self.grid)
+        writeln!(f, "{}", self.grid)
     }
 }

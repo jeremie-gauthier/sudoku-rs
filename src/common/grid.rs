@@ -39,7 +39,7 @@ impl From<String> for Grid {
                     .map(|(col_idx, char_nb)| {
                         let digit: u8 = match *char_nb {
                             '.' => 0,
-                            _ => u8::from_str_radix(&char_nb.to_string(), 10).unwrap(),
+                            _ => char_nb.to_string().parse::<u8>().unwrap(),
                         };
                         Cell::new(digit, row_idx, col_idx)
                     })
