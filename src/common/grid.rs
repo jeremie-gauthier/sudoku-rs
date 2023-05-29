@@ -60,10 +60,10 @@ impl fmt::Display for Grid {
                 row.iter()
                     .map(|cell| cell.to_string())
                     .collect::<Vec<String>>()
-                    .join(" ")
+                    .join("")
             })
             .collect::<Vec<String>>()
-            .join("\n");
+            .join("");
 
         write!(f, "{}", data_stringified)
     }
